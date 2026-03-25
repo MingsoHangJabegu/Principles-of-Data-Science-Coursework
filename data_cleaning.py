@@ -6,9 +6,7 @@ from pathlib import Path
 EXCEL_DIR = r"c:\Users\Jabegu\Desktop\SQL\Principles-of-Data-Science-Coursework\Raw"
 OUTPUT_DIR = r"c:\Users\Jabegu\Desktop\SQL\Principles-of-Data-Science-Coursework\cleaned_data"
 
-# ============================================================================
-# 1. CLEAN HOUSE PRICES DATA (FIRST)
-# ============================================================================
+# House Prices data
 
 prices_file = os.path.join(EXCEL_DIR, "HPSSA Dataset 37 - Median price paid by ward.xls")
 
@@ -42,11 +40,8 @@ df_prices_ox.to_csv(prices_output, index=False)
 print("House prices data cleaned and saved.")
 
 
-# ============================================================================
-# 2. CLEAN BROADBAND DATA (OXFORDSHIRE ONLY)
-# ============================================================================
-print("\n2. CLEANING BROADBAND DATA...")
-print("-" * 80)
+
+# Broadband Data
 
 broadband_file = os.path.join(EXCEL_DIR, "BroadbandDashboardDataFile.xlsx")
 ward_list_file = os.path.join(EXCEL_DIR, "MSOA21_WD25_LAD25_EW_LU_v3.csv")
@@ -61,33 +56,11 @@ df_wards_ox = df_ward_list[
 ].copy()
 ox_ward_codes = df_wards_ox['MSOA21CD'].unique()
 
-# Set the first row as headers
-# if "Area code" in df_broadband.iloc[0].values:
-#     df_broadband.columns = df_broadband.iloc[0]
-#     df_broadband = df_broadband[1:].reset_index(drop=True)
-
-# print(df_broadband.head().to_markdown())
-
 # Filter broadband by confirmed Oxfordshire area codes only
 df_broadband_filtered = df_broadband[df_broadband['Area code'].isin(ox_ward_codes)].copy()
 
-# # Rename columns for clarity
-# df_broadband.columns = ['Area_Code', 'Area_Name', 'Superfast_Availability', 
-#                         'Ultrafast_Availability', 'Standard_Availability',
-#                         'Average_Downlink_Speed', 'Median_Download_Speed', 
-#                         'Receiving_Over_30Mbps']
-
 # Remove rows with all NaN values
 df_broadband = df_broadband.dropna(how='all')
-
-# Convert numeric columns to appropriate types
-# numeric_cols = ['Superfast_Availability', 'Ultrafast_Availability', 'Standard_Availability',
-#                 'Average_Downlink_Speed', 'Median_Download_Speed', 'Receiving_Over_30Mbps']
-# for col in numeric_cols:
-#     df_broadband[col] = pd.to_numeric(df_broadband[col], errors='coerce')
-
-# Remove rows where all numeric values are NaN
-# df_broadband = df_broadband.dropna(subset=numeric_cols, how='all')
 
 # Save cleaned broadband data
 broadband_output = os.path.join(OUTPUT_DIR, "broadband_cleaned.csv")
