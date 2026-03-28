@@ -3,11 +3,12 @@ import os
 from pathlib import Path
 
 # Defining paths
-EXCEL_DIR = r"c:\Users\Jabegu\Desktop\SQL\Principles-of-Data-Science-Coursework\Raw"
-OUTPUT_DIR = r"c:\Users\Jabegu\Desktop\SQL\Principles-of-Data-Science-Coursework\cleaned_data"
+EXCEL_DIR = r"c:\Users\Jabegu\Desktop\SQL\Principles-of-Data-Science-Coursework\Data\Raw"
+OUTPUT_DIR = r"c:\Users\Jabegu\Desktop\SQL\Principles-of-Data-Science-Coursework\Data\Cleaned Data"
 
 # House Prices data
 
+# Path
 prices_file = os.path.join(EXCEL_DIR, "HPSSA Dataset 37 - Median price paid by ward.xls")
 
 # Read the house prices data
@@ -43,6 +44,7 @@ print("House prices data cleaned and saved.")
 
 # Broadband Data
 
+# Paths
 broadband_file = os.path.join(EXCEL_DIR, "BroadbandDashboardDataFile.xlsx")
 ward_list_file = os.path.join(EXCEL_DIR, "MSOA21_WD25_LAD25_EW_LU_v3.csv")
 
