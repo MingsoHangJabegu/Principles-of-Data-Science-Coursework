@@ -61,6 +61,14 @@ ox_ward_codes = df_wards_ox['MSOA21CD'].unique()
 # Filter broadband by confirmed Oxfordshire area codes only
 df_broadband_filtered = df_broadband[df_broadband['Area code'].isin(ox_ward_codes)].copy()
 
+# Keep the ward codes to use in sql queries
+df_broadband_filtered = df_broadband.merge(
+    df_wards_ox[['MSOA21CD', 'LAD25CD']], 
+    left_on='Area code', 
+    right_on='MSOA21CD', 
+    how='inner'
+).drop(columns=['MSOA21CD']).rename(columns={'LAD25CD': 'local_authority_code'})
+
 # Remove rows with all NaN values
 df_broadband = df_broadband.dropna(how='all')
 

@@ -1,88 +1,88 @@
-area_code,area_name
-E02005921,"Cropredy, Wroxton & Shennington"
-E02005922,Banbury Hardwick
-E02005923,Banbury Neithrop
-E02005924,Banbury Grimsbury
-E02005925,Banbury Ruscote
-E02005926,Banbury Easington
-E02005927,Banbury Calthorpe
-E02005928,"Bodicote, Adderbury & Bloxham"
-E02005929,"Sibford, Hook Norton & Milcombe"
-E02005930,"Deddington, Steeple Aston & Heyfords"
-E02005931,"Caversfield, Ambrosden & Fringford"
-E02005932,Bicester North
-E02005933,Bicester East
-E02005934,Bicester West
-E02005935,Bicester South
-E02005936,"Islip, Arncott & Chesterton"
-E02005958,Thame North
-E02005959,Beckley & Horspath
-E02005960,Thame South
-E02005961,Wheatley & Great Haseley
-E02005962,Chinnor & Tetsworth
-E02005963,Berinsfield & Wittenham
-E02005964,"Chalgrove, Stadhampton & Dorchester"
-E02005965,Watlington & Nettlebed
-E02005968,Benson & Crowmarsh Gifford
-E02005972,"Hagbourne, Moreton & Cholsey"
-E02005973,Henley North
-E02005974,Henley South
-E02005975,"Goring, Woodcote & Whitchurch"
-E02005976,Shiplake & Binfield Heath
-E02005977,Sonning Common & Kidmore End
-E02005943,Marston
-E02005944,Barton
-E02005945,Headington
-E02005946,Risinghurst & Sandhills
-E02005947,Oxford Central
-E02005949,Churchill
-E02005950,East Central Oxford
-E02005951,Grandpont & New Hinksey
-E02005953,Iffley Fields
-E02005954,Cowley South & Iffley
-E02005955,Littlemore & Rose Hill
-E02005956,Blackbird Leys
-E02005957,Greater Leys
-E02007021,Lye Valley & Cowley East
-E02007116,Cowley North
-E02005937,Kidlington North
-E02005938,Kidlington South
-E02005939,"Begbroke, Yarnton & Water Eaton"
-E02005940,Wolvercote & Cutteslowe
-E02005941,Summertown
-E02005942,North Central Oxford
-E02005948,"Osney, Jericho & Port Meadow"
-E02005978,"Dean Court, Cumnor & Appleton"
-E02005979,Botley & Kennington
-E02005980,"Radley, Wootton & Marcham"
-E02005981,Abingdon Northcourt & Peachcroft
-E02005982,Abingdon Audlett Drive & Farm Road
-E02005983,Abingdon Town & West
-E02005985,Abingdon South
-E02005966,Didcot Ladygrove
-E02005967,Didcot West
-E02005969,Wallingford & Brightwell
-E02005970,Didcot South East
-E02005971,Didcot South West
-E02005984,Kingston Bagpuize & East Hanney
-E02005986,Faringdon & Stanford
-E02005987,"Sutton Courtenay, Drayton & Steventon"
-E02005988,Grove
-E02005991,Wantage Town
-E02005992,"South Wantage, Harwell & Blewbury"
-E02006886,"Shrivenham, Watchfield & Uffington"
-E02005993,Chipping Norton
-E02005994,"Kingham, Enstone & Middle Barton"
-E02005995,Chadlington & Wychwoods
-E02005996,"Woodstock, Stonesfield & Tackley"
-E02005997,Charlbury & North Leigh
-E02005998,Hanborough & Cassington
-E02005999,"Leafield, Minster Lovell & Duckington"
-E02006000,Witney East
-E02006001,Witney West
-E02006002,Witney Central
-E02006003,Eynsham & Stanton Harcourt
-E02006004,Burford & Brize Norton
-E02006005,Carterton North
-E02006006,Carterton South
-E02006007,"Bampton, Clanfield & Standlake"
+area_code,area_name,local_authority_code
+E02005921,"Cropredy, Wroxton & Shennington",E07000177
+E02005922,Banbury Hardwick,E07000177
+E02005923,Banbury Neithrop,E07000177
+E02005924,Banbury Grimsbury,E07000177
+E02005925,Banbury Ruscote,E07000177
+E02005926,Banbury Easington,E07000177
+E02005927,Banbury Calthorpe,E07000177
+E02005928,"Bodicote, Adderbury & Bloxham",E07000177
+E02005929,"Sibford, Hook Norton & Milcombe",E07000177
+E02005930,"Deddington, Steeple Aston & Heyfords",E07000177
+E02005931,"Caversfield, Ambrosden & Fringford",E07000177
+E02005932,Bicester North,E07000177
+E02005933,Bicester East,E07000177
+E02005934,Bicester West,E07000177
+E02005935,Bicester South,E07000177
+E02005936,"Islip, Arncott & Chesterton",E07000177
+E02005958,Thame North,E07000179
+E02005959,Beckley & Horspath,E07000179
+E02005960,Thame South,E07000179
+E02005961,Wheatley & Great Haseley,E07000179
+E02005962,Chinnor & Tetsworth,E07000179
+E02005963,Berinsfield & Wittenham,E07000179
+E02005964,"Chalgrove, Stadhampton & Dorchester",E07000179
+E02005965,Watlington & Nettlebed,E07000179
+E02005968,Benson & Crowmarsh Gifford,E07000179
+E02005972,"Hagbourne, Moreton & Cholsey",E07000179
+E02005973,Henley North,E07000179
+E02005974,Henley South,E07000179
+E02005975,"Goring, Woodcote & Whitchurch",E07000179
+E02005976,Shiplake & Binfield Heath,E07000179
+E02005977,Sonning Common & Kidmore End,E07000179
+E02005943,Marston,E07000178
+E02005944,Barton,E07000178
+E02005945,Headington,E07000178
+E02005946,Risinghurst & Sandhills,E07000178
+E02005947,Oxford Central,E07000178
+E02005949,Churchill,E07000178
+E02005950,East Central Oxford,E07000178
+E02005951,Grandpont & New Hinksey,E07000178
+E02005953,Iffley Fields,E07000178
+E02005954,Cowley South & Iffley,E07000178
+E02005955,Littlemore & Rose Hill,E07000178
+E02005956,Blackbird Leys,E07000178
+E02005957,Greater Leys,E07000178
+E02007021,Lye Valley & Cowley East,E07000178
+E02007116,Cowley North,E07000178
+E02005937,Kidlington North,E07000177
+E02005938,Kidlington South,E07000177
+E02005939,"Begbroke, Yarnton & Water Eaton",E07000177
+E02005940,Wolvercote & Cutteslowe,E07000178
+E02005941,Summertown,E07000178
+E02005942,North Central Oxford,E07000178
+E02005948,"Osney, Jericho & Port Meadow",E07000178
+E02005978,"Dean Court, Cumnor & Appleton",E07000180
+E02005979,Botley & Kennington,E07000180
+E02005980,"Radley, Wootton & Marcham",E07000180
+E02005981,Abingdon Northcourt & Peachcroft,E07000180
+E02005982,Abingdon Audlett Drive & Farm Road,E07000180
+E02005983,Abingdon Town & West,E07000180
+E02005985,Abingdon South,E07000180
+E02005966,Didcot Ladygrove,E07000179
+E02005967,Didcot West,E07000179
+E02005969,Wallingford & Brightwell,E07000179
+E02005970,Didcot South East,E07000179
+E02005971,Didcot South West,E07000179
+E02005984,Kingston Bagpuize & East Hanney,E07000180
+E02005986,Faringdon & Stanford,E07000180
+E02005987,"Sutton Courtenay, Drayton & Steventon",E07000180
+E02005988,Grove,E07000180
+E02005991,Wantage Town,E07000180
+E02005992,"South Wantage, Harwell & Blewbury",E07000180
+E02006886,"Shrivenham, Watchfield & Uffington",E07000180
+E02005993,Chipping Norton,E07000181
+E02005994,"Kingham, Enstone & Middle Barton",E07000181
+E02005995,Chadlington & Wychwoods,E07000181
+E02005996,"Woodstock, Stonesfield & Tackley",E07000181
+E02005997,Charlbury & North Leigh,E07000181
+E02005998,Hanborough & Cassington,E07000181
+E02005999,"Leafield, Minster Lovell & Duckington",E07000181
+E02006000,Witney East,E07000181
+E02006001,Witney West,E07000181
+E02006002,Witney Central,E07000181
+E02006003,Eynsham & Stanton Harcourt,E07000181
+E02006004,Burford & Brize Norton,E07000181
+E02006005,Carterton North,E07000181
+E02006006,Carterton South,E07000181
+E02006007,"Bampton, Clanfield & Standlake",E07000181

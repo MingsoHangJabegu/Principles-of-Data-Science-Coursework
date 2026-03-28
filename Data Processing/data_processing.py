@@ -22,7 +22,7 @@ bb.columns = [
     "area_code", "area_name",
     "superfast_availability", "gigabit_availability",
     "below_uso", "avg_download_speed_mbps",
-    "under_10_mbps", "over_30_mbps",
+    "under_10_mbps", "over_30_mbps", "local_authority_code"
 ]
 
 # Read house prices data
@@ -71,7 +71,7 @@ print("Ward data cleaned and saved.")
 
 # For broadband_area table
 broadband_area = (
-    bb[["area_code", "area_name"]]
+    bb[["area_code", "area_name", "local_authority_code"]]
     .drop_duplicates()
     .reset_index(drop=True)
 )
@@ -83,7 +83,7 @@ broadband_area.to_csv(broadband_area_output, index=False)
 print("Broadband Area data cleaned and saved.")
 
 # For broadband_metric table
-broadband_metric = bb.drop(columns=["area_name"]).reset_index(drop=True)
+broadband_metric = bb.drop(columns=["area_name", "local_authority_code"]).reset_index(drop=True)
 
 # Save cleaned broadband metrics data
 broadband_metric_output = os.path.join(BASE_DIR, "Principles-of-Data-Science-Coursework", 
