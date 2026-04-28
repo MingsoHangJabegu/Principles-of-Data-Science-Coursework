@@ -4,16 +4,14 @@ from connection import run_query
 def get_house_prices_data(local_authority, ward,start_year, end_year, quarter):
     # Query for question 4
     query1 = """
-    SELECT l.local_authority_name, w.ward_name, AVG(hp.median_price) AS average_price
+    SELECT w.ward_name, AVG(hp.median_price) AS average_price
     FROM house_price hp 
     JOIN ward w ON hp.ward_code = w.ward_code 
-    JOIN local_authority l ON w.local_authority_code = l.local_authority_code
-    WHERE l.local_authority_name = ? AND (hp.period LIKE ? OR hp.period LIKE ?)
-    GROUP BY l.local_authority_name, w.ward_name;
+    WHERE w.ward_name = ? AND (hp.period LIKE ? OR hp.period LIKE ?)
     """
 
     # Set parameters for the query
-    params1 = (local_authority, f"%{start_year}", f"%{end_year}")
+    params1 = (ward, f"%{start_year}", f"%{end_year}")
 
     # Execute the query with parameters
     average_prices = run_query(query1, params=params1)
@@ -60,6 +58,8 @@ def get_house_prices_data(local_authority, ward,start_year, end_year, quarter):
     # Execute the query with parameters
     lowest_price = run_query(query3, params=params3)
 
+    print(average_prices)
+    print("-------------------------")
     print(lowest_price)
     return average_prices, price_changes, lowest_price
 
