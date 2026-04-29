@@ -1,4 +1,4 @@
-from connection import run_query
+from .connection import run_query
 
 # Question 7-8
 def get_broadband_data(local_authority, ward):
@@ -33,9 +33,4 @@ def get_broadband_data(local_authority, ward):
 
     # Execute the query for question 8
     broadband_fastest = run_query(query2, params=params2)
-
-    print(broadband_stats)
-
     return broadband_stats, broadband_fastest
-
-get_broadband_data("Cherwell", "Bicester North")

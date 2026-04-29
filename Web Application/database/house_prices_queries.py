@@ -1,4 +1,4 @@
-from connection import run_query
+from .connection import run_query
 
 # Question 4-6
 def get_house_prices_data(local_authority, ward,start_year, end_year, quarter):
@@ -57,11 +57,4 @@ def get_house_prices_data(local_authority, ward,start_year, end_year, quarter):
 
     # Execute the query with parameters
     lowest_price = run_query(query3, params=params3)
-
-    print(average_prices)
-    print("-------------------------")
-    print(lowest_price)
     return average_prices, price_changes, lowest_price
-
-
-get_house_prices_data("Oxford", "Churchill",  "2022", "2023", "Dec 1995")

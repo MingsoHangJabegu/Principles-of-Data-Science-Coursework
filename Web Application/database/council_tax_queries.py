@@ -1,4 +1,4 @@
-from connection import run_query
+from .connection import run_query
 
 # Question 9-10
 def get_council_tax_data(ward_1, ward_2):
@@ -45,9 +45,4 @@ def get_council_tax_data(ward_1, ward_2):
 
     # Execute the query for question 10
     lowest_tax = run_query(query2)
-
-    print(lowest_tax)
-
     return(tax_diff, lowest_tax)
-
-get_council_tax_data("Bicester", "Banbury")
