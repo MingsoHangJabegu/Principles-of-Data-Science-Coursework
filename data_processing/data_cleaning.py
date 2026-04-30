@@ -3,8 +3,8 @@ import os
 from pathlib import Path
 
 # Defining paths
-EXCEL_DIR = os.path.join(os.getcwd(), "Data", "Raw")
-OUTPUT_DIR = os.path.join(os.getcwd(), "Data", "Cleaned Data")
+EXCEL_DIR = os.path.join(os.getcwd(), "data", "raw")
+OUTPUT_DIR = os.path.join(os.getcwd(), "data", "cleaned_data")
 
 # House Prices data
 

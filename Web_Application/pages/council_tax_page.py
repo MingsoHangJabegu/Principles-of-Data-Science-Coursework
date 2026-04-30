@@ -1,7 +1,7 @@
 from dash import dcc, html, Input, Output, dash_table
-from database.council_tax_queries import get_council_tax_data
-from database.xml_queries import xml_council_tax
-from database.connection import run_query
+from web_application.query.council_tax_queries import get_council_tax_data
+from web_application.query.xml_queries import xml_council_tax
+from web_application.query.connection import run_query
 
 
 def load_council_tax_areas():

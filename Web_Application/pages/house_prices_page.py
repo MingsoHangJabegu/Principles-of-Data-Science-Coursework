@@ -1,7 +1,7 @@
 from dash import dcc, html, Input, Output
 from dash import dash_table
-from database.house_prices_queries import get_house_prices_data
-from database.connection import run_query
+from web_application.query.house_prices_queries import get_house_prices_data
+from web_application.query.connection import run_query
 
 
 def load_local_authorities():

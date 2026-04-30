@@ -1,6 +1,6 @@
 from dash import dcc, html, Input, Output, dash_table
-from database.broadband_queries import get_broadband_data
-from database.connection import run_query
+from web_application.query.broadband_queries import get_broadband_data
+from web_application.query.connection import run_query
 
 
 def load_local_authorities():

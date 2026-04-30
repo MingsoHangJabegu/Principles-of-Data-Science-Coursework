@@ -1,9 +1,9 @@
 from dash import Dash, dcc, html
 
-from pages.house_prices_page import get_layout as get_house_prices_layout, register_callbacks as register_house_callbacks
-from pages.council_tax_page import get_layout as get_council_tax_layout, register_callbacks as register_council_callbacks
-from pages.broadband_page import get_layout as get_broadband_layout, register_callbacks as register_broadband_callbacks
-from pages.visualisation_page import get_layout as get_visualisation_layout, register_callbacks as register_visualisation_callbacks
+from web_application.pages.house_prices_page import get_layout as get_house_prices_layout, register_callbacks as register_house_callbacks
+from web_application.pages.council_tax_page import get_layout as get_council_tax_layout, register_callbacks as register_council_callbacks
+from web_application.pages.broadband_page import get_layout as get_broadband_layout, register_callbacks as register_broadband_callbacks
+from web_application.pages.visualisation_page import get_layout as get_visualisation_layout, register_callbacks as register_visualisation_callbacks
 
 app = Dash(__name__)
 app.title = 'Data Dashboard'

@@ -1,6 +1,6 @@
 from dash import dcc, html, Input, Output
-from database.visualisation import house_prices_visualisation
-from database.connection import run_query
+from web_application.query.visualisation import house_prices_visualisation
+from web_application.query.connection import run_query
 
 
 def load_oxford_wards():

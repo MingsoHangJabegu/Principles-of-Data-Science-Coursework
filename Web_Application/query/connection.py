@@ -2,7 +2,7 @@ import sqlite3
 import os
 
 # Path to database
-DB_PATH = os.path.join(os.getcwd(), "Coursework.db")
+DB_PATH = os.path.join(os.getcwd(), "coursework.db")
 # Helper function to run queries
 def run_query(query, params=()):
     with sqlite3.connect(DB_PATH) as conn:
