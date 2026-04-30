@@ -63,74 +63,59 @@ def get_layout():
     }
     filter_row = {
         'display': 'flex',
-        'flexWrap': 'nowrap',
+        'flexWrap': 'wrap',
         'alignItems': 'flex-end',
-        'gap': '1%',
+        'gap': '1rem',
         'overflowX': 'auto',
         'paddingBottom': '0.5rem',
     }
     field_style = {
-        'flex': '1 1 18%',
+        'flex': '0 0 auto',
+        'width': '240px',
         'minWidth': '180px',
+        'maxWidth': '260px',
         'display': 'flex',
         'flexDirection': 'column',
     }
 
     return html.Div([
         html.Div([
+            html.H4('Price range filters', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
             html.Div([
-                html.Label('Local Authority', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
-                dcc.Dropdown(
-                    id='house-local-authority',
-                    options=local_authority_options,
-                    value=local_authority_options[0]['value'] if local_authority_options else None,
-                    clearable=False,
-                    style={'minWidth': '0'},
-                ),
-            ], style=field_style),
-            html.Div([
-                html.Label('Ward', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
-                dcc.Dropdown(
-                    id='house-ward',
-                    options=[{'label': row['ward_name'], 'value': row['ward_name']} for _, row in ward_df.iterrows()],
-                    value=ward_df['ward_name'].iloc[0] if not ward_df.empty else None,
-                    clearable=False,
-                    style={'minWidth': '0'},
-                ),
-            ], style=field_style),
-            html.Div([
-                html.Label('Start Year', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
-                dcc.Dropdown(
-                    id='house-start-year',
-                    options=[{'label': str(year), 'value': str(year)} for year in range(2013, 2024)],
-                    value='2013',
-                    clearable=False,
-                    style={'minWidth': '0'},
-                ),
-            ], style=field_style),
-            html.Div([
-                html.Label('End Year', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
-                dcc.Dropdown(
-                    id='house-end-year',
-                    options=[{'label': str(year), 'value': str(year)} for year in range(2013, 2024)],
-                    value='2023',
-                    clearable=False,
-                    style={'minWidth': '0'},
-                ),
-            ], style=field_style),
-            html.Div([
-                html.Label('Quarter / Period', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
-                dcc.Dropdown(
-                    id='house-quarter',
-                    options=[{'label': period, 'value': period} for period in period_options],
-                    value=period_options[-1] if period_options else None,
-                    clearable=False,
-                    style={'minWidth': '0'},
-                ),
-            ], style=field_style),
-        ], style=filter_row),
+                html.Div([
+                    html.Label('Ward', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
+                    dcc.Dropdown(
+                        id='house-ward',
+                        options=[{'label': row['ward_name'], 'value': row['ward_name']} for _, row in ward_df.iterrows()],
+                        value=ward_df['ward_name'].iloc[0] if not ward_df.empty else None,
+                        clearable=False,
+                        style={'width': '100%'},
+                    ),
+                ], style=field_style),
+                html.Div([
+                    html.Label('Start Year', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
+                    dcc.Dropdown(
+                        id='house-start-year',
+                        options=[{'label': str(year), 'value': str(year)} for year in range(2013, 2024)],
+                        value='2013',
+                        clearable=False,
+                        style={'width': '100%'},
+                    ),
+                ], style=field_style),
+                html.Div([
+                    html.Label('End Year', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
+                    dcc.Dropdown(
+                        id='house-end-year',
+                        options=[{'label': str(year), 'value': str(year)} for year in range(2013, 2024)],
+                        value='2023',
+                        clearable=False,
+                        style={'width': '100%'},
+                    ),
+                ], style=field_style),
+            ], style=filter_row),
+        ], style={**section_style, 'marginBottom': '0.75rem'}),
         html.Div([
-            html.H4('Average Prices', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
+            html.H4('Average Price and Percentage Change', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
             dash_table.DataTable(
                 id='house-price-table',
                 page_size=10,
@@ -141,18 +126,29 @@ def get_layout():
             ),
         ], style=section_style),
         html.Div([
-            html.H4('Price Changes', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
-            dash_table.DataTable(
-                id='house-price-changes-table',
-                page_size=10,
-                style_table=TABLE_STYLE,
-                style_cell=TABLE_STYLE_CELL,
-                style_header=TABLE_STYLE_HEADER,
-                style_as_list_view=False,
-            ),
-        ], style=section_style),
-        html.Div([
             html.H4('Lowest House Price', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
+            html.Div([
+                html.Div([
+                    html.Label('Local Authority', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
+                    dcc.Dropdown(
+                        id='house-local-authority',
+                        options=local_authority_options,
+                        value=local_authority_options[0]['value'] if local_authority_options else None,
+                        clearable=False,
+                        style={'minWidth': '0'},
+                    ),
+                ], style=field_style),
+                html.Div([
+                    html.Label('Quarter / Period', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
+                    dcc.Dropdown(
+                        id='house-quarter',
+                        options=[{'label': period, 'value': period} for period in period_options],
+                        value=period_options[-1] if period_options else None,
+                        clearable=False,
+                        style={'width': '100%'},
+                    ),
+                ], style={**field_style, 'flex': '1 1 32%'}),
+            ], style={**filter_row, 'marginBottom': '1rem', 'gap': '2%'}),
             html.P(id='house-lowest-price', style={'margin': '0', 'fontSize': '1rem', 'fontWeight': '600', 'color': '#34495e'}),
         ], style=section_style),
     ], style={'fontFamily': 'Arial, sans-serif', 'color': '#23374d'})
@@ -162,8 +158,6 @@ def register_callbacks(app):
     @app.callback(
         Output('house-price-table', 'data'),
         Output('house-price-table', 'columns'),
-        Output('house-price-changes-table', 'data'),
-        Output('house-price-changes-table', 'columns'),
         Output('house-lowest-price', 'children'),
         Input('house-local-authority', 'value'),
         Input('house-ward', 'value'),
@@ -178,17 +172,18 @@ def register_callbacks(app):
 
         average_prices = average_prices.copy()
         average_prices['average_price'] = average_prices['average_price'].astype(float).map('{:.2f}'.format)
-        avg_data = average_prices.to_dict('records')
-        avg_columns = [
-            {'name': 'Ward', 'id': 'ward_name'},
-            {'name': 'Average Price (£)', 'id': 'average_price'},
-        ]
         price_changes = price_changes.copy()
         price_changes['pct_change'] = price_changes['pct_change'].astype(float).map('{:.2f}'.format)
-        changes_data = price_changes.to_dict('records')
-        changes_columns = [
-            {'name': 'Local Authority', 'id': 'local_authority_name'},
+
+        merged = average_prices.merge(
+            price_changes[['ward_name', 'pct_change']],
+            on='ward_name',
+            how='left'
+        )
+        merged_data = merged.to_dict('records')
+        merged_columns = [
             {'name': 'Ward', 'id': 'ward_name'},
+            {'name': 'Average Price (£)', 'id': 'average_price'},
             {'name': 'Percentage Change (%)', 'id': 'pct_change'},
         ]
 
@@ -199,4 +194,4 @@ def register_callbacks(app):
                 f"{lowest_price.iloc[0]['ward_name']} (£{lowest_price.iloc[0]['median_price']:.2f})"
             )
 
-        return avg_data, avg_columns, changes_data, changes_columns, lowest_price_text
+        return merged_data, merged_columns, lowest_price_text

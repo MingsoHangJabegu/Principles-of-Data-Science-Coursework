@@ -61,37 +61,29 @@ def get_layout():
         'paddingBottom': '0.5rem',
     }
     field_style = {
-        'flex': '1 1 48%',
-        'minWidth': '240px',
+        'flex': '0 0 auto',
+        'width': '280px',
+        'minWidth': '200px',
+        'maxWidth': '320px',
         'display': 'flex',
         'flexDirection': 'column',
     }
 
     return html.Div([
         html.Div([
-            html.Div([
-                html.Label('Local Authority', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
-                dcc.Dropdown(
-                    id='broadband-local-authority',
-                    options=local_authority_options,
-                    value=local_authority_options[0]['value'] if local_authority_options else None,
-                    clearable=False,
-                    style={'minWidth': '0'},
-                ),
-            ], style=field_style),
-            html.Div([
-                html.Label('Area Name', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
-                dcc.Dropdown(
-                    id='broadband-area',
-                    options=[{'label': row['area_name'], 'value': row['area_name']} for _, row in broadband_area_df.iterrows()],
-                    value=broadband_area_df['area_name'].iloc[0] if not broadband_area_df.empty else None,
-                    clearable=False,
-                    style={'minWidth': '0'},
-                ),
-            ], style=field_style),
-        ], style=filter_row),
-        html.Div([
             html.H4('Broadband Stats', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
+            html.Div([
+                html.Div([
+                    html.Label('Area Name', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
+                    dcc.Dropdown(
+                        id='broadband-area',
+                        options=[{'label': row['area_name'], 'value': row['area_name']} for _, row in broadband_area_df.iterrows()],
+                        value=broadband_area_df['area_name'].iloc[0] if not broadband_area_df.empty else None,
+                        clearable=False,
+                        style={'width': '100%'},
+                    ),
+                ], style=field_style),
+            ], style={**filter_row, 'marginBottom': '1rem'}),
             dash_table.DataTable(
                 id='broadband-stats-table',
                 page_size=10,
@@ -103,6 +95,18 @@ def get_layout():
         ], style=section_style),
         html.Div([
             html.H4('Fastest Areas by Local Authority', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
+            html.Div([
+                html.Div([
+                    html.Label('Local Authority', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
+                    dcc.Dropdown(
+                        id='broadband-local-authority',
+                        options=local_authority_options,
+                        value=local_authority_options[0]['value'] if local_authority_options else None,
+                        clearable=False,
+                        style={'width': '100%'},
+                    ),
+                ], style=field_style),
+            ], style={**filter_row, 'marginBottom': '1rem'}),
             dash_table.DataTable(
                 id='broadband-fastest-table',
                 page_size=10,

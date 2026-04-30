@@ -48,57 +48,51 @@ def get_layout():
     }
     filter_row = {
         'display': 'flex',
-        'flexWrap': 'nowrap',
+        'flexWrap': 'wrap',
         'alignItems': 'flex-end',
-        'gap': '1%',
+        'gap': '1rem',
         'overflowX': 'auto',
         'paddingBottom': '0.5rem',
     }
     field_style = {
-        'flex': '1 1 18%',
+        'flex': '0 0 auto',
+        'width': '260px',
         'minWidth': '180px',
+        'maxWidth': '320px',
         'display': 'flex',
         'flexDirection': 'column',
     }
 
     return html.Div([
         html.Div([
+            html.H4('Town comparison filters', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
             html.Div([
-                html.Label('Town 1', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
-                dcc.Dropdown(
-                    id='council-town-1',
-                    options=council_tax_areas,
-                    value=council_tax_areas[0]['value'] if council_tax_areas else None,
-                    clearable=False,
-                    style={'minWidth': '0'},
-                ),
-            ], style=field_style),
-            html.Div([
-                html.Label('Town 2', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
-                dcc.Dropdown(
-                    id='council-town-2',
-                    options=council_tax_areas,
-                    value=(
-                        council_tax_areas[1]['value']
-                        if len(council_tax_areas) > 1
-                        else (council_tax_areas[0]['value'] if council_tax_areas else None)
+                html.Div([
+                    html.Label('Town 1', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
+                    dcc.Dropdown(
+                        id='council-town-1',
+                        options=council_tax_areas,
+                        value=council_tax_areas[0]['value'] if council_tax_areas else None,
+                        clearable=False,
+                        style={'width': '100%'},
                     ),
-                    clearable=False,
-                    style={'minWidth': '0'},
-                ),
-            ], style=field_style),
-            html.Div([
-                html.Label('Select up to 3 bands', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
-                dcc.Dropdown(
-                    id='council-bands',
-                    options=band_options,
-                    value=['A', 'B', 'C'],
-                    multi=True,
-                    clearable=False,
-                    style={'minWidth': '0'},
-                ),
-            ], style={**field_style, 'flex': '1 1 28%'}),
-        ], style=filter_row),
+                ], style=field_style),
+                html.Div([
+                    html.Label('Town 2', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
+                    dcc.Dropdown(
+                        id='council-town-2',
+                        options=council_tax_areas,
+                        value=(
+                            council_tax_areas[1]['value']
+                            if len(council_tax_areas) > 1
+                            else (council_tax_areas[0]['value'] if council_tax_areas else None)
+                        ),
+                        clearable=False,
+                        style={'width': '100%'},
+                    ),
+                ], style=field_style),
+            ], style=filter_row),
+        ], style={**section_style, 'marginBottom': '0.75rem'}),
         html.Div([
             html.H4('Tax Difference', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
             dash_table.DataTable(
@@ -122,10 +116,22 @@ def get_layout():
             ),
         ], style=section_style),
         html.Div([
+            html.H4('Band selection filters', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
+            html.Div([
+                html.Div([
+                    html.Label('Select up to 3 bands', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
+                    dcc.Dropdown(
+                        id='council-bands',
+                        options=band_options,
+                        value=['A', 'B', 'C'],
+                        multi=True,
+                        clearable=False,
+                        style={'width': '100%'},
+                    ),
+                ], style={**field_style, 'flex': '1 1 28%'}),
+            ], style={**filter_row, 'marginBottom': '1rem', 'gap': '2%'}),
             html.H4('Highest Band C Charge', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
-            html.P(id='xml-council-tax-summary', style={'margin': '0', 'fontSize': '1rem', 'fontWeight': '600', 'color': '#34495e'}),
-        ], style=section_style),
-        html.Div([
+            html.P(id='xml-council-tax-summary', style={'margin': '0', 'fontSize': '1rem', 'fontWeight': '600', 'color': '#34495e', 'marginBottom': '1rem'}),
             html.H4('Average Council Tax for Selected Bands', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
             dash_table.DataTable(
                 id='xml-council-tax-table',
@@ -170,9 +176,9 @@ def register_callbacks(app):
         diff_data = tax_diff.to_dict('records')
         diff_columns = [
             {'name': 'Town 1', 'id': 'Area_1'},
-            {'name': 'Charge 1 (£)', 'id': 'Charge_1'},
+            {'name': 'Town 1 Charge (£)', 'id': 'Charge_1'},
             {'name': 'Town 2', 'id': 'Area_2'},
-            {'name': 'Charge 2 (£)', 'id': 'Charge_2'},
+            {'name': 'Town 2 Charge (£)', 'id': 'Charge_2'},
             {'name': 'Tax Difference (£)', 'id': 'Tax_Difference'},
         ]
         lowest_tax = lowest_tax.copy()
