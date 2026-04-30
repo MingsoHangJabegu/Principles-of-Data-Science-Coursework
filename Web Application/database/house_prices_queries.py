@@ -29,7 +29,6 @@ def get_house_prices_data(local_authority, ward,start_year, end_year, quarter):
     )
     SELECT w.ward_name, ((y2.avg_price_2 - y1.avg_price_1) / y1.avg_price_1) * 100.0 || "%" AS pct_change
     FROM ward w
-    JOIN local_authority l ON w.local_authority_code = l.local_authority_code
     JOIN Year1 y1 ON w.ward_code = y1.ward_code
     JOIN Year2 y2 ON w.ward_code = y2.ward_code
     WHERE w.ward_name = ?;
