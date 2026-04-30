@@ -47,7 +47,7 @@ Then activate it:
 # Windows
 venv\Scripts\activate
 
-# Mac / Linux
+# Mac / Linux / Git Bash
 source venv/bin/activate
 ```
 
