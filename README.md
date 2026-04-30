@@ -38,7 +38,7 @@ A virtual environment keeps dependencies isolated from your system Python:
 
 ```bash
 # Create the environment
-python -m venv venv
+python -m venv .venv
 ```
 
 Then activate it:
