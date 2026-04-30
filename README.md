@@ -1,5 +1,5 @@
 Post-Grad Principles of Data Science Coursework
-## 🛠️ Prerequisites
+## Prerequisites
 
 Make sure you have the following installed before starting:
 
@@ -15,7 +15,7 @@ git --version
 
 ---
 
-## 🚀 Setup & Installation
+## Setup & Installation
 
 ### Step 1 — Clone the Repository
 
