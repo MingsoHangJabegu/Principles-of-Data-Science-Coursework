@@ -116,6 +116,10 @@ def get_layout():
             ),
         ], style=section_style),
         html.Div([
+            html.H4('Highest Band C Charge', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
+            html.P(id='xml-council-tax-summary', style={'margin': '0', 'fontSize': '1rem', 'fontWeight': '600', 'color': '#34495e', 'marginBottom': '1rem'})
+        ], style=section_style),
+        html.Div([
             html.H4('Band selection filters', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
             html.Div([
                 html.Div([
@@ -130,8 +134,6 @@ def get_layout():
                     ),
                 ], style={**field_style, 'flex': '1 1 28%'}),
             ], style={**filter_row, 'marginBottom': '1rem', 'gap': '2%'}),
-            html.H4('Highest Band C Charge', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
-            html.P(id='xml-council-tax-summary', style={'margin': '0', 'fontSize': '1rem', 'fontWeight': '600', 'color': '#34495e', 'marginBottom': '1rem'}),
             html.H4('Average Council Tax for Selected Bands', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
             dash_table.DataTable(
                 id='xml-council-tax-table',
