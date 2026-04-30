@@ -5,7 +5,7 @@ import pandas as pd
 
 def xml_council_tax(bands=None):
     # Load and parse the XML file
-    tree = ET.parse(os.getcwd() + "/Council Tax.xml")
+    tree = ET.parse(os.getcwd() + "/council_tax.xml")
     root = tree.getroot()
 
     # Extract data into a list of dictionaries
