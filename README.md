@@ -32,7 +32,28 @@ cd Principles-of-Data-Science-Coursework
 
 ---
 
-### Step 2 — Install Dependencies
+### Step 2 — Create a Virtual Environment
+
+A virtual environment keeps dependencies isolated from your system Python:
+
+```bash
+# Create the environment
+python -m venv venv
+```
+
+Then activate it:
+
+```bash
+# Windows
+venv\Scripts\activate
+
+# Mac / Linux
+source venv/bin/activate
+```
+
+---
+
+### Step 3 — Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -40,9 +61,9 @@ pip install -r requirements.txt
 
 ---
 
-### Step 3 — Run the Scripts
+### Step 4 — Run the Scripts
 
-You can either run the app.py file using the run button in your IDE or by using the following command:
+You can either run the app.py file using the run button in your IDE or by running the following command:
 
 ```bash
 python app.py
