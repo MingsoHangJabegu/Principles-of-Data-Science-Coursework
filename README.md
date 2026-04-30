@@ -47,7 +47,10 @@ Then activate it:
 # Windows
 venv\Scripts\activate
 
-# Mac / Linux / Git Bash
+# Windows (Git Bash)
+source venv/Scripts/activate
+
+# Mac / Linux
 source venv/bin/activate
 ```
 
