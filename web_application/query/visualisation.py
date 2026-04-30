@@ -1,11 +1,12 @@
 from .connection import run_query
 import plotly.express as px
 
-
+# Function to generate visualisations for house prices based on selected wards and time range
 def house_prices_visualisation(wards, start_year='2013', end_year='2023'):
     if not wards:
         return None, None
 
+    # Query for visualisation data
     placeholders = ','.join('?' * len(wards))
     query = f"""
     SELECT w.ward_name, l.local_authority_name, hp.period, hp.median_price
@@ -16,10 +17,12 @@ def house_prices_visualisation(wards, start_year='2013', end_year='2023'):
     AND hp.period BETWEEN 'Mar {start_year}' AND 'Mar {end_year}'
     """
 
+    # Execute the query with parameters
     data = run_query(query, params=tuple(wards))
     if data.empty:
         return None, None
 
+    # Extract year from the period for plotting
     data['year'] = data['period'].str.extract(r'(\d{4})').astype(int)
 
     # Combine local authority and ward names for labels in the plots
@@ -50,6 +53,7 @@ def house_prices_visualisation(wards, start_year='2013', end_year='2023'):
         yaxis_title='Median House Price (£)',
         legend_title='Local Authority - Ward'
     )
+    # Customize hover information
     for trace in fig1.data:
         label = trace.name.rsplit(',', 1)[0].strip()
         trace.name = label  # Clean up legend label
@@ -61,7 +65,7 @@ def house_prices_visualisation(wards, start_year='2013', end_year='2023'):
             'Year: %{x}<extra></extra>'
         )
 
-    # Bar chart comparison
+    # Bar chart
     first_year = data['year'].min()
     last_year = data['year'].max()
     bar_data = data[data['year'].isin([first_year, last_year])].copy()
@@ -82,6 +86,7 @@ def house_prices_visualisation(wards, start_year='2013', end_year='2023'):
         yaxis_title='Median House Price (£)',
         legend_title='Year'
     )
+    # Customize hover information
     for trace in fig2.data:
         year_data = bar_data[bar_data['year'] == trace.name].set_index('label')
         year_data = year_data.loc[list(trace.x)].reset_index()

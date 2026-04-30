@@ -2,7 +2,7 @@ from dash import dcc, html, Input, Output
 from web_application.query.visualisation import house_prices_visualisation
 from web_application.query.connection import run_query
 
-
+# Load Oxford wards for the dropdown
 def load_oxford_wards():
     df = run_query("SELECT ward_name " \
     "FROM ward w JOIN local_authority l " \
@@ -11,7 +11,7 @@ def load_oxford_wards():
     "ORDER BY ward_name")
     return [{'label': name, 'value': name} for name in df['ward_name'].tolist()]
 
-
+# Load Cherwell wards for the dropdown
 def load_cherwell_wards():
     df = run_query("SELECT ward_name " \
     "FROM ward w JOIN local_authority l " \
@@ -20,11 +20,11 @@ def load_cherwell_wards():
     "ORDER BY ward_name")
     return [{'label': name, 'value': name} for name in df['ward_name'].tolist()]
 
-
+# Pre-load dropdown options
 oxford_wards_options = load_oxford_wards()
 cherwell_wards_options = load_cherwell_wards()
 
-
+# Define the layout of the visualisation page
 def get_layout():
     section_style = {
         'backgroundColor': '#ffffff',
@@ -100,7 +100,7 @@ def get_layout():
         ], style=section_style),
     ], style={'fontFamily': 'Arial, sans-serif', 'color': '#23374d'})
 
-
+# Define callbacks for the visualisation page
 def register_callbacks(app):
     @app.callback(
         Output('oxford-wards', 'value'),

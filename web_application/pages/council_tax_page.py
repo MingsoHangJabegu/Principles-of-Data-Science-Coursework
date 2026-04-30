@@ -3,14 +3,15 @@ from web_application.query.council_tax_queries import get_council_tax_data
 from web_application.query.xml_queries import xml_council_tax
 from web_application.query.connection import run_query
 
-
+# Load dropdown options from the database
 def load_council_tax_areas():
     df = run_query("SELECT DISTINCT area_name FROM council_tax_area ORDER BY area_name")
     return [{'label': name, 'value': name} for name in df['area_name'].tolist()]
 
-
+# Define band options for the dropdown
 band_options = [{'label': b, 'value': b} for b in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']]
 
+# Pre-load dropdown options and data for the page
 council_tax_areas = load_council_tax_areas()
 TABLE_STYLE = {
     'overflowX': 'auto',
@@ -36,7 +37,7 @@ TABLE_STYLE_HEADER = {
     'color': '#1f2a44',
 }
 
-
+# Define the layout of the council tax page with filters and tables
 def get_layout():
     section_style = {
         'backgroundColor': '#ffffff',
@@ -146,7 +147,7 @@ def get_layout():
         ], style=section_style),
     ], style={'fontFamily': 'Arial, sans-serif', 'color': '#23374d'})
 
-
+# Define callbacks to update tables based on user input
 def register_callbacks(app):
     @app.callback(
         Output('council-bands', 'value'),
@@ -170,6 +171,7 @@ def register_callbacks(app):
         Input('council-bands', 'value'),
     )
     def update_council_tax(town_1, town_2, bands):
+        # Get council tax difference and lowest tax data based on the selected towns
         tax_diff, lowest_tax = get_council_tax_data(town_1, town_2)
         tax_diff = tax_diff.copy()
         tax_diff['Charge_1'] = tax_diff['Charge_1'].astype(float).map('{:.2f}'.format)
@@ -183,6 +185,7 @@ def register_callbacks(app):
             {'name': 'Town 2 Charge (£)', 'id': 'Charge_2'},
             {'name': 'Tax Difference (£)', 'id': 'Tax_Difference'},
         ]
+        # Format the lowest tax data for display
         lowest_tax = lowest_tax.copy()
         lowest_tax['Lowest_Tax'] = lowest_tax['Lowest_Tax'].astype(float).map('{:.2f}'.format)
         lowest_data = lowest_tax.to_dict('records')
@@ -191,6 +194,7 @@ def register_callbacks(app):
             {'name': 'Lowest Band B Charge (£)', 'id': 'Lowest_Tax'},
         ]
 
+        # Ensure the selected bands are in the correct format and limit to 3
         selected_bands = bands or ['A', 'B', 'C']
         if isinstance(selected_bands, str):
             selected_bands = [selected_bands]
@@ -198,6 +202,7 @@ def register_callbacks(app):
         if not selected_bands:
             selected_bands = ['A', 'B', 'C']
 
+        # Get XML data for the selected bands and prepare it for display
         area_averages, max_row = xml_council_tax(selected_bands)
         xml_df = area_averages.reset_index()
         xml_df.columns = ['area', 'average_amount']

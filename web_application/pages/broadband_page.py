@@ -2,12 +2,12 @@ from dash import dcc, html, Input, Output, dash_table
 from web_application.query.broadband_queries import get_broadband_data
 from web_application.query.connection import run_query
 
-
+# Load dropdown options from the database
 def load_local_authorities():
     df = run_query("SELECT DISTINCT local_authority_name FROM local_authority ORDER BY local_authority_name")
     return [{'label': name, 'value': name} for name in df['local_authority_name'].tolist()]
 
-
+# Load broadband areas with their corresponding local authority names
 def load_broadband_areas():
     df = run_query(
         "SELECT ba.area_name, l.local_authority_name FROM broadband_area ba "
@@ -16,10 +16,11 @@ def load_broadband_areas():
     )
     return df
 
-
+# Pre-load dropdown options and data for the page
 local_authority_options = load_local_authorities()
 broadband_area_df = load_broadband_areas()
 
+# Define styles for the tables and page layout
 TABLE_STYLE = {
     'overflowX': 'auto',
     'minWidth': '100%',
@@ -42,7 +43,7 @@ TABLE_STYLE_HEADER = {
     'color': '#1f2a44',
 }
 
-
+# Define the layout of the broadband page with filters and tables
 def get_layout():
     section_style = {
         'backgroundColor': '#ffffff',
@@ -117,7 +118,7 @@ def get_layout():
         ], style=section_style),
     ], style={'fontFamily': 'Arial, sans-serif', 'color': '#23374d'})
 
-
+# Define callbacks to update the tables based on the selected filters
 def register_callbacks(app):
     @app.callback(
         Output('broadband-stats-table', 'data'),
@@ -128,15 +129,18 @@ def register_callbacks(app):
         Input('broadband-area', 'value'),
     )
     def update_broadband(local_authority, area_name):
+        # Fetch broadband stats and fastest areas based on the selected local authority and area name
         broadband_stats, broadband_fastest = get_broadband_data(local_authority, area_name)
         broadband_stats = broadband_stats.copy()
         broadband_stats['avg_download_speed_mbps'] = broadband_stats['avg_download_speed_mbps'].astype(float).map('{:.2f}'.format)
         stats_data = broadband_stats.to_dict('records')
+        # Define columns for the broadband stats table
         stats_columns = [
             {'name': 'Area Name', 'id': 'area_name'},
             {'name': 'Average Speed (Mbps)', 'id': 'avg_download_speed_mbps'},
             {'name': 'Superfast Availability (%)', 'id': 'superfast_pct'},
         ]
+        # Format the fastest areas data and define columns for the table
         broadband_fastest = broadband_fastest.copy()
         broadband_fastest['average_speed_mbps'] = broadband_fastest['average_speed_mbps'].astype(float).map('{:.2f}'.format)
         fastest_data = broadband_fastest.to_dict('records')

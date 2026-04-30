@@ -5,9 +5,11 @@ from web_application.pages.council_tax_page import get_layout as get_council_tax
 from web_application.pages.broadband_page import get_layout as get_broadband_layout, register_callbacks as register_broadband_callbacks
 from web_application.pages.visualisation_page import get_layout as get_visualisation_layout, register_callbacks as register_visualisation_callbacks
 
+# Initialise the Dash app
 app = Dash(__name__)
 app.title = 'Data Dashboard'
 
+# Define the layout of the app with a header and tabs for each section
 app.layout = html.Div([
     html.Div([
         html.H1('Simple Data Dashboard', style={'marginBottom': '0.5rem', 'color': '#1f2a44', 'fontSize': '2.4rem'}),
@@ -21,10 +23,12 @@ app.layout = html.Div([
     ], style={'maxWidth': '1400px', 'margin': '0 auto'}),
 ], style={'padding': '2rem', 'backgroundColor': '#f5f7fb', 'minHeight': '100vh'})
 
+# Register callbacks for each page
 register_house_callbacks(app)
 register_council_callbacks(app)
 register_broadband_callbacks(app)
 register_visualisation_callbacks(app)
 
+# Run the app
 if __name__ == '__main__':
     app.run(debug=True)
