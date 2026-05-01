@@ -1,3 +1,4 @@
+import pandas as pd
 from dash import dcc, html, Input, Output, dash_table
 from web_application.query.council_tax_queries import get_council_tax_data
 from web_application.query.xml_queries import xml_council_tax
@@ -104,18 +105,7 @@ def get_layout():
         ], style=section_style),
         html.Div([
             html.H4('Lowest Band B Charge', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
-            dash_table.DataTable(
-                id='council-lowest-tax-table',
-                page_size=10,
-                style_table=TABLE_STYLE,
-                style_cell=TABLE_STYLE_CELL,
-                style_header=TABLE_STYLE_HEADER,
-                style_as_list_view=False,
-            ),
-        ], style=section_style),
-        html.Div([
-            html.H4('Highest Band C Charge', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
-            html.P(id='xml-council-tax-summary', style={'margin': '0', 'fontSize': '1rem', 'fontWeight': '600', 'color': '#34495e', 'marginBottom': '1rem'})
+            html.P(id='council-lowest-tax-summary', style={'margin': '0', 'fontSize': '1rem', 'fontWeight': '600', 'color': '#34495e', 'marginBottom': '1rem'})
         ], style=section_style),
         html.Div([
             html.H4('Band selection filters', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
@@ -142,6 +132,10 @@ def get_layout():
                 style_as_list_view=False,
             ),
         ], style=section_style),
+        html.Div([
+            html.H4('Highest Band C Charge', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
+            html.P(id='xml-council-tax-summary', style={'margin': '0', 'fontSize': '1rem', 'fontWeight': '600', 'color': '#34495e', 'marginBottom': '1rem'})
+        ], style=section_style)
     ], style={'fontFamily': 'Arial, sans-serif', 'color': '#23374d'})
 
 # Define callbacks to update tables based on user input
@@ -158,8 +152,7 @@ def register_callbacks(app):
     @app.callback(
         Output('council-tax-diff-table', 'data'),
         Output('council-tax-diff-table', 'columns'),
-        Output('council-lowest-tax-table', 'data'),
-        Output('council-lowest-tax-table', 'columns'),
+        Output('council-lowest-tax-summary', 'children'),
         Output('xml-council-tax-table', 'data'),
         Output('xml-council-tax-table', 'columns'),
         Output('xml-council-tax-summary', 'children'),
@@ -182,14 +175,9 @@ def register_callbacks(app):
             {'name': 'Town 2 Charge (£)', 'id': 'Charge_2'},
             {'name': 'Tax Difference (£)', 'id': 'Tax_Difference'},
         ]
-        # Format the lowest tax data for display
-        lowest_tax = lowest_tax.copy()
-        lowest_tax['Lowest_Tax'] = lowest_tax['Lowest_Tax'].astype(float).map('{:.2f}'.format)
-        lowest_data = lowest_tax.to_dict('records')
-        lowest_columns = [
-            {'name': 'Town', 'id': 'Town'},
-            {'name': 'Lowest Band B Charge (£)', 'id': 'Lowest_Tax'},
-        ]
+        # Convert to DataFrame for easier access
+        lowest_tax_df = pd.DataFrame(lowest_tax) 
+        lowest_band_B = f"{lowest_tax_df['Town'].iloc[0]} has the lowest Band B charge with £{lowest_tax_df['Lowest_Tax'].iloc[0]}."
 
         # Ensure the selected bands are in the correct format and limit to 3
         selected_bands = bands or ['A', 'B', 'C']
@@ -209,8 +197,8 @@ def register_callbacks(app):
             {'name': 'Area', 'id': 'area'},
             {'name': 'Average Amount (£)', 'id': 'average_amount'},
         ]
-        summary = (
+        highest_band_C = (
             f"{max_row['area']} has the highest Band C charge with £{max_row['amount']:.2f}."
         )
 
-        return diff_data, diff_columns, lowest_data, lowest_columns, xml_data, xml_columns, summary
+        return diff_data, diff_columns, lowest_band_B, xml_data, xml_columns, highest_band_C
