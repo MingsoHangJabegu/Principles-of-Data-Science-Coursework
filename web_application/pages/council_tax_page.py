@@ -66,7 +66,7 @@ def get_layout():
 
     return html.Div([
         html.Div([
-            html.H4('Town comparison filters', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
+            html.H4('Tax Difference', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
             html.Div([
                 html.Div([
                     html.Label('Town 1', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
@@ -93,9 +93,6 @@ def get_layout():
                     ),
                 ], style=field_style),
             ], style=filter_row),
-        ], style={**section_style, 'marginBottom': '0.75rem'}),
-        html.Div([
-            html.H4('Tax Difference', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
             dash_table.DataTable(
                 id='council-tax-diff-table',
                 page_size=10,
