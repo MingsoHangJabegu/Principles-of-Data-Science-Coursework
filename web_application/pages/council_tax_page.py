@@ -108,7 +108,7 @@ def get_layout():
             html.P(id='council-lowest-tax-summary', style={'margin': '0', 'fontSize': '1rem', 'fontWeight': '600', 'color': '#34495e', 'marginBottom': '1rem'})
         ], style=section_style),
         html.Div([
-            html.H4('Band selection filters', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
+            html.H4('Average Council Tax for Selected Bands', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
             html.Div([
                 html.Div([
                     html.Label('Select up to 3 bands', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
@@ -122,7 +122,6 @@ def get_layout():
                     ),
                 ], style={**field_style, 'flex': '1 1 28%'}),
             ], style={**filter_row, 'marginBottom': '1rem', 'gap': '2%'}),
-            html.H4('Average Council Tax for Selected Bands', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
             dash_table.DataTable(
                 id='xml-council-tax-table',
                 page_size=10,
