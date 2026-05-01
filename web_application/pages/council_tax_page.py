@@ -67,7 +67,7 @@ def get_layout():
 
     return html.Div([
         html.Div([
-            html.H4('Tax Difference', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
+            html.H4('Tax Difference for Band A Properties', style={'marginBottom': '0.75rem', 'color': '#1f2a44'}),
             html.Div([
                 html.Div([
                     html.Label('Town 1', style={'fontWeight': '600', 'marginBottom': '0.5rem'}),
