@@ -45,13 +45,13 @@ Then activate it:
 
 ```bash
 # Windows
-venv\Scripts\activate
+.venv\Scripts\activate
 
 # Windows (Git Bash)
-source venv/Scripts/activate
+source .venv/Scripts/activate
 
 # Mac / Linux
-source venv/bin/activate
+source .venv/bin/activate
 ```
 
 ---
